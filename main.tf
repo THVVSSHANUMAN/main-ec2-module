@@ -20,7 +20,7 @@ data "aws_ssm_parameter" "this" {
 resource "aws_instance" "this" {
   count = local.create && !var.create_spot_instance ? 1 : 0
 
-  ami                  = try(coalesce(var.ami, data.aws_ssm_parameter.this[0].value), null)
+  #ami                  = try(coalesce(var.ami, data.aws_ssm_parameter.this[0].value), null)
   instance_type        = var.instance_type
   cpu_core_count       = var.cpu_core_count
   cpu_threads_per_core = var.cpu_threads_per_core
